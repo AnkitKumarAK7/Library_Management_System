@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/student")  // to give a common endpoint to all the APIs
 public class StudentController {
@@ -37,4 +39,10 @@ public class StudentController {
     // get all the student in the db
 
     // get list of all male students
+
+    @GetMapping("/get-males")
+       public List<String> getAllMales(){
+        List<String> males = studentService.getAllMales();
+        return males;
+    }
 }
