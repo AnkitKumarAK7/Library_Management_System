@@ -11,9 +11,8 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @Setter
 @Entity  // To tell JPA this is a Model class
-
-// @Table(name ="student_info")  // If we change the table name in the mid this is never happen it will create a new table
-
+@Table(name ="student_info")  // If we change the table name in the mid this is never happen it will create a new table
+@Builder
 
 public class Student {
 

@@ -7,6 +7,8 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -14,6 +16,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @Entity
+@Builder
 
 public class LibraryCard {
 
@@ -33,4 +36,8 @@ public class LibraryCard {
     @OneToOne    // current class to Connecting class / library to student
     @JoinColumn   // it will create a foreign key column and by default it will pick the primary key by default
     Student student;
+
+
+    @OneToMany(mappedBy = "libraryCard", cascade = CascadeType.ALL)
+    List<Transaction> transaction = new ArrayList<>();
 }

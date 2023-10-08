@@ -1,6 +1,6 @@
 package com.example.librarymanagementstudent.Enum;
 
-public enum Genre {
+public enum  Genre {
 
     COMEDY,
     SCIFI,
