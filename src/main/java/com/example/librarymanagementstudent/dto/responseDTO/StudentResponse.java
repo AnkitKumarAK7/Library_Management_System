@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 
 public class StudentResponse {
 
@@ -18,4 +19,7 @@ public class StudentResponse {
     String message;
 
     String cardIssuedNo;
+
+    public void setLibraryCardResponse(LibraryCardResponse cardResponse) {
+    }
 }

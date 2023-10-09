@@ -8,6 +8,7 @@ import com.example.librarymanagementstudent.dto.responseDTO.StudentResponse;
 import com.example.librarymanagementstudent.model.LibraryCard;
 import com.example.librarymanagementstudent.model.Student;
 import com.example.librarymanagementstudent.repository.StudentRepository;
+import com.example.librarymanagementstudent.transformer.StudentTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,12 +44,16 @@ public class StudentService {
 //        student.setGender(studentRequest.getGender());
 
         // create object using builder
-        Student student = Student.builder()
-                .name(studentRequest.getName())
-                .age(studentRequest.getAge())
-                .email(studentRequest.getEmail())
-                .gender(studentRequest.getGender())
-                .build();
+//        Student student = Student.builder()
+//                .name(studentRequest.getName())
+//                .age(studentRequest.getAge())
+//                .email(studentRequest.getEmail())
+//                .gender(studentRequest.getGender())
+//                .build();
+
+        Student student = StudentTransformer.StudentRequestToStudent(studentRequest);
+
+
 
         // give a library card
 //        LibraryCard libraryCard = new LibraryCard();
@@ -73,10 +78,18 @@ public class StudentService {
         studentResponse.setEmail(savedStudent.getEmail());
         studentResponse.setMessage("You have been registered");
 
-        LibraryCardResponse cardResponse = new LibraryCardResponse();
-        cardResponse.setCardNo(savedStudent.getLibraryCard().getCardNo());
-        cardResponse.setIssueDate(savedStudent.getLibraryCard().getIssueDate());
-        cardResponse.setCardStatus(savedStudent.getLibraryCard().getCardStatus());
+//        LibraryCardResponse cardResponse = new LibraryCardResponse();
+//        cardResponse.setCardNo(savedStudent.getLibraryCard().getCardNo());
+//        cardResponse.setIssueDate(savedStudent.getLibraryCard().getIssueDate());
+//        cardResponse.setCardStatus(savedStudent.getLibraryCard().getCardStatus());
+//        studentResponse.setLibraryCardResponse(cardResponse);
+
+        LibraryCardResponse cardResponse = LibraryCardResponse.builder()
+                .cardNo(savedStudent.getLibraryCard().getCardNo())
+                .cardStatus(savedStudent.getLibraryCard().getCardStatus())
+                .issueDate(savedStudent.getLibraryCard().getIssueDate())
+                .build();
+
         studentResponse.setLibraryCardResponse(cardResponse);
 
         return studentResponse;
